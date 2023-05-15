@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olex Web site Aplication {% block title %}{% endblock %}</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="icon" href="{% static 'image/logo.png' %}">
+</head>
+
+<body>
+
+    <nav class="bg-white border-gray-200 dark:bg-gray-900">
+        <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
+            <a href="{% url 'home' %}" class="flex items-center">
+                <img src="{% static 'image/logo.png' %}" class="h-8 mr-3" alt="Flowbite Logo" />
+                <!-- <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Olex</span> -->
+            </a>
+            <div class="flex items-center">
+                {% if request.user.is_authenticated %}
+                    <a href="tel:5541251234" class="mr-6 text-sm  text-gray-500 dark:text-white hover:underline">+998 (93) 556-25-40</a>
+                    <a href="#" class="a mr-6 text-sm bg-blue-600 rounded-lg text-white-500 dark:text-white hover:underline">{{user.username|slice:'0:1'}}</a>
+                    <a href="{% url 'profile' %}" class="mr-6 text-sm  text-gray-500 dark:text-white hover:underline">Profile</a>
+                {% else %}
+                    <a href="tel:5541251234" class="mr-6 text-sm  text-gray-500 dark:text-white hover:underline">+998 (93) 556-25-40</a>
+                    <a href="{% url 'login' %}" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Kirish | </a>
+                    <a href="{% url 'signup' %}"
+                        class="text-sm  text-blue-600 dark:text-blue-500 hover:underline"> | Ro'yxatdan o'tish</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <nav class="bg-gray-50 dark:bg-gray-700">
+        <div class="max-w-screen-xl px-4 py-3 mx-auto">
+            <div class="flex items-center">
+                <ul class="flex flex-row font-medium mt-0 mr-6 space-x-8 text-sm">
+                    <li>
+                        <a href="#" class="text-gray-900 dark:text-white hover:underline" aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-gray-900 dark:text-white hover:underline">Company</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-gray-900 dark:text-white hover:underline">Team</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-gray-900 dark:text-white hover:underline">Features</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    {% block content %}
+    {% endblock %}
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+
+</body>
+
+</html>
